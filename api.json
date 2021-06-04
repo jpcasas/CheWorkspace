@@ -1,0 +1,1071 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DocManagement Params 1.0.0",
+    "version": "1.0.0",
+    "description": "Get parameters of docManagement",
+    "contact": {
+      "email": "jerome.pastre@tcs.ch"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://content-management/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "docManagementParams"
+    }
+  ],
+  "paths": {
+    "/params/products": {
+      "get": {
+        "tags": [
+          "docManagementParams"
+        ],
+        "summary": "Get a list of product params",
+        "description": "Get a list of product params",
+        "operationId": "getProductParamsList",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "params-list": {
+                      "type": "array",
+                      "items": {
+                        "title": "ParamsProduct",
+                        "type": "object",
+                        "properties": {
+                          "product-code": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "product code"
+                          },
+                          "billing-company": {
+                            "title": "ParamsBillingCompany",
+                            "type": "object",
+                            "properties": {
+                              "billing-company-code": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "code of the billing company"
+                              },
+                              "iban": {
+                                "type": "string",
+                                "description": "IBAN of the billing company"
+                              },
+                              "qr-iban": {
+                                "type": "string",
+                                "description": "QR-IBAN used to indicate the account to be credited"
+                              },
+                              "phone-number": {
+                                "type": "string",
+                                "description": "phone number of billing company"
+                              },
+                              "address": {
+                                "title": "Address",
+                                "type": "object",
+                                "description": "Change notes:\n- 22.01.2020 : New enum Other in address-type",
+                                "x-examples": {
+                                  "example-1": {
+                                    "contact-nature": "Address",
+                                    "address-type": "Legal",
+                                    "street-name": "Chemin de Blandonnet",
+                                    "house-number": 4,
+                                    "house-number-details": "string",
+                                    "address-addendum-1": "string",
+                                    "address-addendum-2": "string",
+                                    "city": "Vernier",
+                                    "zip-code": "1214",
+                                    "country": "CH",
+                                    "pob-nr": "string",
+                                    "corporate-name": "Touring Club Suisse"
+                                  }
+                                },
+                                "properties": {
+                                  "address-type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "Legal",
+                                      "Billing",
+                                      "Other"
+                                    ],
+                                    "description": "Type of address",
+                                    "example": "Legal"
+                                  },
+                                  "street-name": {
+                                    "type": "string",
+                                    "description": "Street name",
+                                    "example": "Chemin de Blandonnet"
+                                  },
+                                  "house-number": {
+                                    "type": "integer",
+                                    "description": "House number",
+                                    "example": 4
+                                  },
+                                  "house-number-details": {
+                                    "type": "string",
+                                    "description": "Additional information of house number (in case of need)"
+                                  },
+                                  "address-addendum-1": {
+                                    "type": "string",
+                                    "description": "Additional address information"
+                                  },
+                                  "address-addendum-2": {
+                                    "type": "string",
+                                    "description": "Additional address information"
+                                  },
+                                  "city": {
+                                    "type": "string",
+                                    "description": "City",
+                                    "example": "Vernier"
+                                  },
+                                  "zip-code": {
+                                    "type": "string",
+                                    "description": "Zip code",
+                                    "example": "1214"
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "description": "Country code",
+                                    "example": "CH",
+                                    "minLength": 2,
+                                    "maxLength": 2,
+                                    "default": "CH"
+                                  },
+                                  "pob-nr": {
+                                    "type": "string",
+                                    "description": "PO Box"
+                                  },
+                                  "corporate-name": {
+                                    "type": "string",
+                                    "description": "Customer Company name in case of billing address",
+                                    "example": "Touring Club Suisse"
+                                  }
+                                },
+                                "required": [
+                                  "address-type",
+                                  "street-name",
+                                  "house-number",
+                                  "city",
+                                  "zip-code"
+                                ]
+                              },
+                              "company-name": {
+                                "title": "ParamsLabel",
+                                "type": "object",
+                                "properties": {
+                                  "label-fr": {
+                                    "type": "string",
+                                    "description": "label in french"
+                                  },
+                                  "label-de": {
+                                    "type": "string",
+                                    "description": "label in german"
+                                  },
+                                  "label-it": {
+                                    "type": "string",
+                                    "description": "label in italian"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "phone": {
+                            "type": "string",
+                            "description": "phone number associated to product"
+                          },
+                          "fax": {
+                            "type": "string",
+                            "description": "fax number associated to product"
+                          },
+                          "brand": {
+                            "title": "ParamsLabel",
+                            "type": "object",
+                            "properties": {
+                              "label-fr": {
+                                "type": "string",
+                                "description": "label in french"
+                              },
+                              "label-de": {
+                                "type": "string",
+                                "description": "label in german"
+                              },
+                              "label-it": {
+                                "type": "string",
+                                "description": "label in italian"
+                              }
+                            }
+                          },
+                          "website": {
+                            "title": "ParamsLabel",
+                            "type": "object",
+                            "properties": {
+                              "label-fr": {
+                                "type": "string",
+                                "description": "label in french"
+                              },
+                              "label-de": {
+                                "type": "string",
+                                "description": "label in german"
+                              },
+                              "label-it": {
+                                "type": "string",
+                                "description": "label in italian"
+                              }
+                            }
+                          },
+                          "email": {
+                            "title": "ParamsLabel",
+                            "type": "object",
+                            "properties": {
+                              "label-fr": {
+                                "type": "string",
+                                "description": "label in french"
+                              },
+                              "label-de": {
+                                "type": "string",
+                                "description": "label in german"
+                              },
+                              "label-it": {
+                                "type": "string",
+                                "description": "label in italian"
+                              }
+                            }
+                          },
+                          "url-cga": {
+                            "title": "ParamsLabel",
+                            "type": "object",
+                            "properties": {
+                              "label-fr": {
+                                "type": "string",
+                                "description": "label in french"
+                              },
+                              "label-de": {
+                                "type": "string",
+                                "description": "label in german"
+                              },
+                              "label-it": {
+                                "type": "string",
+                                "description": "label in italian"
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "product-code",
+                          "billing-company"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized or token expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Too much response, please narrow your criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/params/signatures": {
+      "get": {
+        "tags": [
+          "docManagementParams"
+        ],
+        "summary": "Get a list of signature params",
+        "description": "Get a list of signature params",
+        "operationId": "getSignatureParamsList",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "params-list": {
+                      "type": "array",
+                      "items": {
+                        "title": "ParamsSignature",
+                        "type": "object",
+                        "properties": {
+                          "product-code": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "product code"
+                          },
+                          "firstSignatoryName": {
+                            "type": "string",
+                            "description": "first signatory name"
+                          },
+                          "firstSignatoryImageName": {
+                            "type": "string",
+                            "description": "image name of first signatory"
+                          },
+                          "secondSignatoryName": {
+                            "type": "string",
+                            "description": "second signatory name"
+                          },
+                          "secondSignatoryImageName": {
+                            "type": "string",
+                            "description": "image name of second signatory"
+                          },
+                          "firstSignatoryPosition": {
+                            "title": "ParamsLabel",
+                            "type": "object",
+                            "properties": {
+                              "label-fr": {
+                                "type": "string",
+                                "description": "label in french"
+                              },
+                              "label-de": {
+                                "type": "string",
+                                "description": "label in german"
+                              },
+                              "label-it": {
+                                "type": "string",
+                                "description": "label in italian"
+                              }
+                            }
+                          },
+                          "secondSignatoryPosition": {
+                            "title": "ParamsLabel",
+                            "type": "object",
+                            "properties": {
+                              "label-fr": {
+                                "type": "string",
+                                "description": "label in french"
+                              },
+                              "label-de": {
+                                "type": "string",
+                                "description": "label in german"
+                              },
+                              "label-it": {
+                                "type": "string",
+                                "description": "label in italian"
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "product-code",
+                          "firstSignatoryName",
+                          "firstSignatoryImageName",
+                          "firstSignatoryPosition"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized or token expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Too much response, please narrow your criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/params/annexes": {
+      "get": {
+        "tags": [
+          "docManagementParams"
+        ],
+        "summary": "Get a list of annex params",
+        "description": "Get a list of annex params",
+        "operationId": "getAnnexParamsList",
+        "parameters": [
+          {
+            "name": "event-type",
+            "in": "query",
+            "required": true,
+            "description": "type of business event",
+            "example": "new-proposal, new-policy, invoice-created ...",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "product-code",
+            "in": "query",
+            "required": true,
+            "description": "product code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "required": true,
+            "description": "language of annex",
+            "example": "fr",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "fr",
+                "de",
+                "it"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "params-list": {
+                      "type": "array",
+                      "items": {
+                        "title": "ParamsAnnex",
+                        "type": "object",
+                        "properties": {
+                          "event-type": {
+                            "type": "string",
+                            "description": "type of business event",
+                            "example": "new-proposal, new-policy, invoice-created ..."
+                          },
+                          "product-code": {
+                            "type": "string",
+                            "description": "product code"
+                          },
+                          "language": {
+                            "type": "string",
+                            "enum": [
+                              "fr",
+                              "de",
+                              "it"
+                            ],
+                            "description": "language of the correspondance",
+                            "example": "fr"
+                          },
+                          "is-included-for-border-resident": {
+                            "type": "boolean",
+                            "description": "allow to know if annex is included in case of border resident"
+                          },
+                          "annex-code": {
+                            "type": "string",
+                            "description": "annex code"
+                          },
+                          "annex-type": {
+                            "type": "string",
+                            "enum": [
+                              "physical",
+                              "electronic"
+                            ],
+                            "description": "type of annex, physical paper to add in enveloppe or electronic file to print"
+                          },
+                          "product-general-condition": {
+                            "type": "string",
+                            "description": "year of product general condition"
+                          }
+                        },
+                        "required": [
+                          "event-type",
+                          "product-code",
+                          "language",
+                          "annex-code",
+                          "annex-type"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized or token expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Too much response, please narrow your criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error.1.0.0",
+                  "type": "object",
+                  "description": "Model handling the communication of additional error messages\nNeeds to be part of all API contracts",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the error to identify the error in logs"
+                    },
+                    "correlation-id": {
+                      "type": "string",
+                      "description": "Provided by the consumer (in the metadata)"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "Set when the error is caught",
+                      "format": "date-time"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "Error code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Gives some context about the error"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "timestamp"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
